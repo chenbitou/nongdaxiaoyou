@@ -1,0 +1,13 @@
+@import '../../../../../../style/public/admin.wxss';
+
+.line {
+	width: 100%;
+	text-align: left;
+	font-size: 26rpx;
+	padding:2rpx 30rpx;
+	margin-top: 10rpx;
+}
+
+.admin-comm-list .item .info { 
+    padding: 15rpx 20rpx 15rpx!important; 
+}

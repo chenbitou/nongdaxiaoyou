@@ -1,0 +1,57 @@
+@import "../../../../../style/public/article_list.wxss";
+@import "../../../style/skin.wxss";
+
+.text-pic-list-box .item {
+	padding: 10rpx 30rpx 20rpx 30rpx;
+	position: relative;
+	overflow: hidden;
+}
+
+.text-pic-list-box .item .status {
+	z-index: 9999;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 24rpx;
+	border-bottom-left-radius: 25rpx;
+	background-color: #ccc;
+	padding: 10rpx 30rpx 10rpx;
+	color: #fff;
+}
+
+
+.btn.mid {
+	padding: 0 30rpx;
+}
+
+.text-pic-list-box .item .author {
+	margin-top: 10rpx;
+	font-size: 28rpx;
+	color: #666;
+	padding: 6rpx 0;
+}
+
+.text-pic-list-box .item .title {
+	position: relative;
+	padding-right: 20rpx;
+	padding-top: 40rpx;
+	font-size: 32rpx;
+}
+
+.text-pic-list-box .item .data {
+	line-height: 1.5;
+	font-size: 26rpx;
+	color: #666;
+	margin-top: 30rpx;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.text-time {
+	color: #ccc;
+}
+
+.text-pic-list-box .item .title {
+	max-height: unset !important
+}

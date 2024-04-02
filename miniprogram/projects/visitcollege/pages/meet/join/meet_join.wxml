@@ -1,0 +1,54 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<view wx:if="{{isLoad}}" class="main padding-project">
+
+	<view class="article-box">
+		<view class="form-box card-project shadow-project">
+			<view class="form-group">
+				<view class="title text-cut">{{meet.MEET_TITLE}}</view>
+			</view>
+			<view class="form-group" bindtap="url" data-type="back">
+				<view class="title text-cut" style="padding-right:0"><text class="icon-calendar margin-right-xxs"></text>{{meet.dayDesc}} <text class="tag mid bg-orange light round margin-right">更改时段</text></view>
+			</view>
+
+		</view>
+
+
+	</view>
+
+	<view class="article-box">
+
+
+		<!--multi begin-->
+		<view class="form-box card-project shadow-project">
+			<view class="user-title">
+				<view class="left text-cut">预约人信息录入 <text class="text-s text-grey">(最多可添{{meet.MEET_MAX_JOIN_CNT}}人,已添加{{formsList.length}}人)</text></view>
+				<view wx:if="{{formsList.length<meet.MEET_MAX_JOIN_CNT}}" class="right" bindtap="url" data-url="../join_info/meet_join_info"><text class="icon-roundadd"></text></view>
+			</view>
+			<view class="user-list">
+				<view class="item" wx:for="{{formsList}}" wx:key="k">
+					<view class="num">{{index+1}}</view>
+					<view class="line" wx:for="{{item}}" wx:key="k1" wx:for-item="itm">
+						<view class="left">{{itm.title}}</view>
+						<view class="right">{{itm.val}}</view>
+					</view>
+					<view class="oprt">
+						<view bindtap="url" data-url="../join_info/meet_join_info?flag=edit&idx={{index}}" class="bg-pink light margin-right-s bg-edit">修改</view>
+						<view bindtap="bindDel" data-idx="{{index}}" class="bg-grey light">删除</view>
+					</view>
+				</view>
+			</view>
+
+			<view wx:if="{{formsList.length<meet.MEET_MAX_JOIN_CNT}}" class="add-line" bindtap="url" data-url="../join_info/meet_join_info">
+				<view wx:if="{{formsList.length==0}}" class="line">+ 添加预约人</view>
+				<view wx:else class="line">+ 继续添加预约人</view>
+			</view>
+		</view>
+		<!--multi END-->
+
+	</view> 
+
+	<button bindtap="bindSubmitTap" class="btn-base btn-project" style="margin-bottom:100rpx;">提交预约</button> 
+
+</view>

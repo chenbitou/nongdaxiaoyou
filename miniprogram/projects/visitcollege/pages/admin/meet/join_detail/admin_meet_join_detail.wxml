@@ -1,0 +1,64 @@
+<view wx:if="{{id&&isLoad===null}}" class="margin-top load notexist text-l text-grey"></view>
+<view wx:if="{{id&&isLoad===false}}" class="margin-top load loading text-l text-grey"></view>
+
+
+<view wx:if="{{isLoad && isAdmin}}" class="main-admin">
+	<view class="admin-comm-list">
+		<view class="item">
+
+			<view class="info" style="min-height: unset;">
+				<view class="info-item">
+					<view class="title  text-l">时间</view>
+					<view class="mao">：</view>
+					<view class="content text-l">{{join.JOIN_MEET_DAY}} {{join.JOIN_MEET_TIME_START}}～{{join.JOIN_MEET_TIME_END}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="item">
+
+			<view class="info">
+
+				<view class="info-item">
+					<view class="title">项目</view>
+					<view class="mao">：</view>
+					<view class="content">《{{join.JOIN_MEET_TITLE}}》</view>
+				</view>
+
+
+				<view class="info-item">
+					<view class="title">预约状态</view>
+					<view class="mao">：</view>
+					<view class="content">
+						<view wx:if="{{join.JOIN_STATUS==1}}" class="text-green"><text class="icon-roundcheck margin-right-xxs"></text>预约成功
+							<text wx:if="{{join.JOIN_IS_CHECKIN==1}}">，已核销</text>
+							<text class="text-grey" wx:else>，未核销</text>
+						</view>
+						<view class="text-red" wx:elif="{{join.JOIN_STATUS==10}}">用户取消</view>
+						<view class="text-orange" wx:elif="{{join.JOIN_STATUS==99}}">系统取消 </view>
+					</view>
+				</view>
+				<view class="info-item" wx:if="{{join.JOIN_STATUS==99&&join.JOIN_REASON}}">
+					<view class="title">取消原因</view>
+					<view class="mao">：</view>
+					<view class="content">{{join.JOIN_REASON}} </view>
+				</view>
+				<view class="info-item">
+					<view class="title">预约时间</view>
+					<view class="mao">：</view>
+					<view class="content">{{join.JOIN_ADD_TIME}} </view>
+				</view>
+			</view>
+
+		</view>
+	</view>
+	<view style="height:30rpx;"></view>
+
+	<import src="../../../../../../tpls/public/admin_forms_detail_tpl.wxml" />
+	<block wx:for="{{join.JOIN_FORMS_LIST}}" wx:key="k">
+		<view class="line"></view>
+		<template is="adminFormsDetailTpl" data="{{forms:item}}" />
+	</block>
+
+
+
+</view>

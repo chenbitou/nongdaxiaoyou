@@ -1,0 +1,88 @@
+@import "../../../style/skin.wxss";
+
+page {
+	background-color: #fff !important;
+}
+
+.main {
+	padding: 0;
+	background-color: #fff !important;
+}
+
+.top {
+	width: 100%;
+}
+
+.top image {
+	width: 100%;
+}
+
+.box {
+	width: 100%;
+	padding: 70rpx 50rpx 20rpx;
+	border-top-right-radius: 45rpx;
+	border-top-left-radius: 45rpx;
+	margin-top: -60rpx;
+	position: relative;
+	background-color: #fff;
+	border-top: 6rpx solid #CAE0FF;
+}
+
+.box .inner {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.box .inner .item {
+	width: 100%;
+	margin-bottom: 36rpx;
+	padding: 30rpx 30rpx;
+	border-radius: 10rpx;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	height: 150rpx;
+	overflow: hidden;
+	position: relative;
+}
+
+.box .inner .item>image {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 150rpx;
+	border-radius: inherit;
+}
+
+.box .inner .item .ix {
+	font-size: 40rpx;
+	margin-right: 45rpx;
+	background-color: rgba(255, 255, 255, 0.2);
+	padding: 20rpx 20rpx;
+	border-radius: 10rpx;
+	z-index: 9;
+}
+
+
+.box .inner .item .title {
+	font-size: 36rpx; 
+	z-index: 9;
+}
+
+.box .inner .item:nth-child(4n+1) {
+	color: #fff2db !important;
+}
+
+.box .inner .item:nth-child(4n+2) {
+	color: #d1ffdd !important;
+}
+
+.box .inner .item:nth-child(4n+3) {
+	color: #f1f0f9 !important;
+}
+
+.box .inner .item:nth-child(4n+4) {
+	color: #ebf3f7 !important;
+}

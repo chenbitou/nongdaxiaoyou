@@ -1,0 +1,26 @@
+<view class="main">
+	<view class="top">
+		<image mode="widthFix" src="../../../images/home.jpg" class="loading" />
+	</view>
+
+	<view class="box">
+		<view class="inner">
+			<view wx:if="{{!list}}" class="load loading text-grey"></view>
+			<view class="item" wx:for="{{list}}" wx:key="key" bindtap="url" data-url="../../meet/rule/meet_rule?id={{item._id}}">
+				<image class="loading" src="../../../images/home/{{index%4+1}}.jpg" mode="aspectFill" />
+				<text class="ix icon-calendar"></text>
+				<view class="title">{{item.MEET_TITLE}}</view>
+			</view>
+
+		</view>
+
+	</view>
+
+	<view style="height: 200rpx;"></view>
+
+</view>
+
+<block wx:if="{{skin.IS_SUB}}">
+	<import src="../../tpls/menu_tpl.wxml" />
+	<template is="menuTpl" data="{{curMenu:'default_index',returnHome:false}}" />
+</block>

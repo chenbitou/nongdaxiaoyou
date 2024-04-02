@@ -1,0 +1,133 @@
+@import "../../../../../style/public/detail.wxss";
+@import "../../../style/skin.wxss";
+
+.form-group .line-desc {
+	font-size: 28rpx;
+	text-align: center;
+	width: 100%;
+	color: #666;
+}
+
+.submit-line {
+	width: 100%;
+}
+
+.user-title {
+	width: 100%;
+	display: flex;
+	padding: 40rpx 40rpx;
+	align-items: center;
+}
+
+.user-title .left {
+	font-size: 28rpx;
+	color: #000;
+}
+
+.user-title .right {
+	flex: 1;
+	text-align: right;
+	font-size: 40rpx;
+	color: #999;
+}
+
+.user-list {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 0rpx 30rpx 20rpx;
+}
+
+.user-list .item {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background-color: #f8f8f8;
+	border-radius: 10rpx;
+	padding: 20rpx;
+	margin-bottom: 26rpx;
+	position: relative;
+}
+
+.user-list .item .num {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 40rpx;
+	color: #ccc;
+	font-weight: bold;
+	opacity: .5;
+	padding: 10rpx;
+}
+
+.user-list .item .line {
+	width: 100%;
+	display: flex;
+	border-bottom: 2rpx dashed #ddd;
+	padding: 20rpx 20rpx;
+	color: #333;
+	font-size: 26rpx;
+	align-items: center;
+}
+
+.user-list .item .line:last-child {
+	border-bottom: 0rpx dashed #ddd;
+}
+
+
+.user-list .item .line .left {
+	width: 150rpx;
+	margin-right: 10rpx;
+	color: #666;
+}
+
+.user-list .item .line .right {
+	display: flex;
+	flex: 1;
+	justify-content: flex-start;
+}
+
+.user-list .right>view {
+	font-size: 24rpx;
+	padding: 8rpx 15rpx;
+	border-radius: 10rpx;
+}
+
+.user-list .item .oprt {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 26rpx;
+	padding: 20rpx 0 0;
+}
+
+.user-list .item .oprt>view {
+	padding: 10rpx 30rpx;
+	font-size: 24rpx;
+	border-radius: 10rpx;
+}
+
+
+
+.add-line {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 40rpx 60rpx;
+}
+
+
+.add-line .line {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 15rpx;
+	font-size: 30rpx;
+	font-weight: bold;
+	border-radius: 50rpx;
+	border: 2rpx dashed #ccc;
+	color: #666;
+	background-color: #f8f8f8;
+}

@@ -1,0 +1,139 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l text-grey"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l text-grey"></view>
+
+<block wx:if="{{isAdmin&&isLoad}}">
+
+	<cmpt-comm-list source='admin' id="cmpt-comm-list" type="admin-meet-join-list" search="{{search||''}}" _params="{{_params}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="admin/meet_join_list" topBottom="50" placeholder="搜索姓名" sortMenusDefaultIndex="0" bind:list="bindCommListCmpt">
+
+		<view slot="searchEnd">
+			<button bindtap="bindCancelAllTap" class="btn mid radius bg-orange margin-right-xs">取消所有</button>
+		</view>
+
+		<!-- List Begin -->
+		<view class="join-list">
+			<view class="time-line text-grey">({{time}})</view>
+			<view wx:if="{{dataList && dataList.total }}" class="load text-grey">共有{{dataList.total}}条符合条件记录
+
+			</view>
+
+			<view class="item" wx:for="{{dataList.list}}" wx:key="key">
+				<view class="header">
+					<view class="left">
+						<text class="icon-calendar margin-right-xxs"></text><text class="">{{item.JOIN_MEET_DAY}} ({{item.JOIN_MEET_TIME_START}}～{{item.JOIN_MEET_TIME_END}})</text>
+					</view>
+					<view class="right" data-idx="{{index}}">
+
+					</view>
+				</view>
+
+				<view class="info">
+
+					<view class="info-item">
+						<view class="title">状态</view>
+						<view class="mao">：</view>
+						<view class="content">
+							<view wx:if="{{item.JOIN_STATUS==1}}" class="text-green"><text class="icon-roundcheck margin-right-xxs"></text>预约成功
+								<text wx:if="{{item.JOIN_IS_CHECKIN==1}}">，已核销</text>
+								<text class="text-grey" wx:else>，未核销</text>
+							</view>
+							<view wx:elif="{{item.JOIN_STATUS==10}}">用户取消</view>
+							<view class="text-orange" wx:elif="{{item.JOIN_STATUS==99}}">系统取消</view>
+						</view>
+					</view>
+
+					<view class="info-item" wx:if="{{item.JOIN_STATUS==99}}">
+						<view class="title">取消原因</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.JOIN_REASON||'未填'}}</view>
+					</view>
+					<view class="info-item" wx:if="{{item.JOIN_STATUS==8}}">
+						<view class="title">未通过原因</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.JOIN_REASON||'未填'}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">人员</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.JOIN_NAME_LIST}} <text class="margin-left-xs text-grey text-s">(共{{item.JOIN_CNT}}人)</text></view>
+					</view>
+
+					<view class="info-item" bind:tap="url" data-url="../join_detail/admin_meet_join_detail?id={{item._id}}">
+						<view class="title">详情</view>
+						<view class="mao">：</view>
+						<view class="content  text-admin">查看详情...</view>
+					</view>
+
+
+					<view class="info-item add-time">
+						<view class="title text-grey">提交</view>
+						<view class="mao text-grey">：</view>
+						<view class="content text-grey">{{item.JOIN_EDIT_TIME}}</view>
+					</view>
+
+					<view class="oprt">
+						<block wx:if="{{item.JOIN_STATUS==1}}">
+							<view wx:if="{{item.JOIN_IS_CHECKIN==0}}" bindtap="bindCheckinTap" data-idx="{{index}}" data-flag="1" class="btn bg-purple margin-right-s light">核销核销</view>
+
+							<view wx:else bindtap="bindCheckinTap" data-idx="{{index}}" data-flag="0" class="btn bg-grey light margin-right-s">取消核销</view>
+						</block>
+
+						<block wx:if="{{item.JOIN_STATUS==1}}">
+							<view bindtap="bindCancelTap" data-idx="{{index}}" data-status="99" data-old="{{item.JOIN_STATUS}}" class="btn bg-grey light  margin-right-s">取消预约</view>
+						</block>
+
+						<block wx:if="{{item.JOIN_STATUS==10 || item.JOIN_STATUS==99}}">
+							<view bindtap="bindStatusTap" data-idx="{{index}}" data-status="1" data-old="{{item.JOIN_STATUS}}" class="btn bg-olive light margin-right-s">恢复预约</view>
+						</block>
+
+						<view bindtap="bindDelTap" data-idx="{{index}}" class="btn bg-orange light margin-right-s">删除</view>
+
+					</view>
+				</view>
+
+				<view class="no">{{index+1}}</view>
+			</view>
+		</view>
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{dataList,skin:'text-grey',noHint:'暂无记录'}}" />
+		<!--load end-->
+
+
+	</cmpt-comm-list>
+
+	<cmpt-modal wx:if="{{cancelAllModalShow}}" model:show="{{cancelAllModalShow}}" type="dialog" title="取消所有预约" bind:click="bindCancelAllCmpt" class="modal-form" cancelText="返回" confirmText="确定取消">
+		<view class="form-group" style="padding:0 10rpx">
+			<view class="title">取消理由 <text class="text-grey text-mid">(选填)</text>：</view>
+			<view bindtap="bindClearReasonTap" style="width:150rpx;text-align: right;" class="text-grey"><text class="icon-roundclose"></text>清空</view>
+		</view>
+
+		<view class="form-group cancel-area">
+			<textarea placeholder-class="phc" placeholder="请输入取消理由 (非必填)" style="height:110rpx" model:value="{{formReason}}" maxlength="100"></textarea>
+		</view>
+	</cmpt-modal>
+
+	<cmpt-modal wx:if="{{cancelModalShow}}" model:show="{{cancelModalShow}}" type="dialog" title="取消预约" bind:click="bindCancelCmpt" class="modal-form" cancelText="返回" confirmText="确定取消">
+		<view class="form-group" style="padding:0 10rpx">
+			<view class="title">取消理由 <text class="text-grey text-mid">(选填)</text>：</view>
+			<view bindtap="bindClearReasonTap" style="width:150rpx;text-align: right;" class="text-grey"><text class="icon-roundclose"></text>清空</view>
+		</view>
+
+		<view class="form-group cancel-area">
+			<textarea placeholder-class="phc" placeholder="请输入取消理由 (非必填)" style="height:110rpx" model:value="{{formReason}}" maxlength="100"></textarea>
+		</view>
+	</cmpt-modal>
+
+	<cmpt-modal wx:if="{{refuseModalShow}}" model:show="{{refuseModalShow}}" type="dialog" title="审核不通过" bind:click="bindRefuseCmpt" class="modal-form" cancelText="返回" confirmText="确定">
+		<view class="form-group" style="padding:0 10rpx">
+			<view class="title">不通过理由 <text class="text-grey text-mid">(选填)</text>：</view>
+			<view bindtap="bindClearReasonTap" style="width:150rpx;text-align: right;" class="text-grey"><text class="icon-roundclose"></text>清空</view>
+		</view>
+
+		<view class="form-group cancel-area">
+			<textarea placeholder-class="phc" placeholder="请输入审核不通过理由 (非必填)，将通知给用户" style="height:110rpx" model:value="{{formReason}}" maxlength="100"></textarea>
+		</view>
+	</cmpt-modal>
+
+</block>

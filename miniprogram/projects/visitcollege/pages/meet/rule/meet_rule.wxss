@@ -1,0 +1,94 @@
+@import "../../../../../style/public/comm_box_list.wxss";
+@import "../../../style/skin.wxss";
+
+
+.text-red {
+	color: #FE5866 !important;
+}
+
+.main {
+	padding: 20rpx;
+}
+
+
+
+
+/*** 详情盒子 ***/
+.article-box {
+	box-sizing: border-box;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 30rpx 20rpx 100rpx;
+	margin-bottom: 300rpx;
+	background-color: #fff;
+	border-radius: 30rpx;
+} 
+ 
+.meet-title {
+	width: 100%;
+	padding: 0rpx 0rpx;
+	font-size: 34rpx;
+	font-weight: bold;
+	text-align: center;
+}
+
+.article-box .article {
+	background-color: #fff;
+	padding: 10rpx 30rpx;
+	border-radius: 20rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+}
+
+
+.article-box .article .content {
+	margin-top: 24rpx;
+	color: #444;
+	font-size: 28rpx;
+	text-align: justify;
+	line-height: 1.6;
+}
+
+.article-box .article .pics {
+	margin-top: 30rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.article-box .article .pics image {
+	width: 100%;
+	border-radius: 10rpx;
+	margin-bottom: 20rpx;
+}
+
+.bottom {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 99999;
+	padding: 20rpx 40rpx;
+}
+
+.bottom .btnx {
+	width: 100%;
+	background-color: var(--projectColor);
+	border: 2rpx solid var(--projectColor);
+	color: #fff;
+	font-size: 30rpx;
+	margin-bottom: 20rpx;
+	border-radius: 10rpx;
+	display: flex;
+	justify-content: center;
+	padding: 20rpx 0;
+}
+
+.bottom .btnx.cancle {
+	color: #666;
+	background-color: #f2f2f2;
+	border: 2rpx solid #ccc;
+}
